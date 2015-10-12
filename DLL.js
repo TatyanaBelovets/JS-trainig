@@ -52,6 +52,9 @@ window.List = (function(){
 	};
 
 	List.prototype.at = function(index) {
+		if (index < 0 || index >= this.length || index != (index | 0)) {
+			throw new RangeError('Invalid index: ' + index + ', expected integer between 0 and ' + this.length);
+		}
 		var dataByIndex;
 		this.each(function(data, i) {
 			if (i === index) {
